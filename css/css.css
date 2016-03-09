@@ -1,0 +1,730 @@
+/** RESET DEFAULT STYLES
+===================================*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent
+}
+body{line-height: 1}
+ol, ul{list-style: none}
+blockquote, q{quotes: none}
+blockquote:before, blockquote:after, q:before, q:after{content: '';content: none}
+/* remember to define focus styles! */
+:focus{outline: 0}
+/* remember to highlight inserts somehow! */
+ins{text-decoration: none}
+del{text-decoration: line-through}
+/* tables still need 'cellspacing="0"' in the markup */
+table{border-collapse: collapse;border-spacing: 0}
+
+
+
+/** BASE STYLES
+===================================*/
+html, body {
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5
+}
+
+.before:before, .after:after{
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden
+}
+.icon{background: url("../img/bg_icons.png") no-repeat 0 0}
+.db{display: block}
+.dn{display: none}
+.fl{float:left}
+.fr{float: right}
+.p_rel{position: relative}
+.p_abs{position: absolute}
+.line{
+    width: 780px;
+    height: 1px;
+    margin: 40px auto 10px;
+    background: #3e314f
+}
+.btn{
+    height: 40px;
+    margin: 30px auto 0;
+    padding: 0;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: center;
+    background: #3e314f;
+    font-weight: 900;
+    border: none;
+    text-decoration: none
+}
+.titleImg{
+    display: block;
+    margin: 0;
+    padding: 18px 0 0;
+    color: #3e314f;
+    font-size: 28px;
+    text-align: center;
+    min-width: 370px;
+    font-weight: 500;
+    text-transform: uppercase;
+    background: url("../img/bg_vilka.png") no-repeat 50% 0
+}
+.titleImg .brd{
+    width: 136px;
+    height: 1px;
+    margin: 18px auto 0;
+    background: #3e314f
+}
+.title{
+    color: #3e314f;
+    font-size: 18px;
+    font-weight: 900;
+    padding: 30px 0 10px;
+    text-decoration: none
+}
+.badCursive{
+    font-size: 35px;
+    color: #b9965a;
+    font-family: 'Bad Script', cursive
+}
+
+.head{width: 960px;margin: 0 auto;}
+.bg_head{height: 150px}
+.head_w{
+    top: 0;
+    z-index: 70;
+    width: 100%;
+    height: 150px;
+    background: #f2f1e5;
+    position: fixed;
+}
+.head_w{
+    width: 100%;
+    height: 150px;
+    background: #f2f1e5
+}
+ul.headMenu{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #b8945a;
+    font-size: 14px;
+}
+ul.headMenu > li{
+    float: left;
+    margin-top: 95px;
+    margin-right: 55px;
+    text-transform: uppercase
+}
+ul.headMenu li.logoHead{
+    margin-top: 28px;
+}
+.logoHead a{padding: 0; border: none}
+ul.headMenu li.last{
+    margin-right: 0
+}
+ul.headMenu a{
+    color: #3e314f;
+    text-decoration: none
+}
+ul.headMenu >li > a:hover, ul.headMenu >li > span.active{
+    padding-bottom: 9px;
+    border-bottom: 1px solid
+}
+ul.headMenu .logoHead a, ul.headMenu .logoHead a:hover{padding: 0; border: none}
+
+.bxslider_w{margin-bottom: 50px}
+
+
+
+/** LAYOUT WITH TEXT EDITOR
+===================================*/
+.wysiwyg{
+    color: #3e314f;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center
+}
+.wysiwyg b, .wysiwyg strong{
+    font-size: 16px
+}
+.wysiwyg .fix{
+    width: 960px;
+    margin: 0 auto;
+    text-align: center
+}
+.wysiwyg .fix p{
+    padding: 0 0 10px
+}
+/*
+.wysiwyg .fix b{
+    margin: 0 0 20px;
+    padding: 0;
+}*/
+.wysiwyg ul{
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    list-style-image: url('../img/bg_li.png')
+}
+.wysiwyg ul li{
+    padding:  0 0 15px 15px;
+}
+.wysiwyg p.imgTitle{
+    padding: 40px 0;
+    text-align: center
+}
+
+.aboutProducts .btn{
+    width: 220px;
+    color: #fff;
+    background: #b9965a
+}
+
+.whatWeDo{
+    height: 387px;
+    margin: 50px 0 0;
+    text-align: center;
+    background: url("../img/bg_whatWeDo.png") 50% 0 #f2f1e5 no-repeat
+}
+.whatWeDo p.title{padding:0 0 10px}
+
+.grid-1,.grid-2,.grid-3{width:220px}
+.grid-1{margin-left: 70px}
+.grid-2{margin: 0 80px}
+.grid-3{margin-right: 70px}
+
+.dinner .title{
+    margin-top: 30px;
+    padding-bottom: 10px
+}
+
+.farmers{
+    height: 500px;
+    margin: 50px 0 0;
+    text-align: center;
+    background: url("../img/bg_farmers.png") 50% 0 no-repeat
+}
+.farmers .about{
+    top: 50px;
+    left: 80px;
+    width: 315px;
+    padding: 50px 47px 30px;
+    background: #f2f1e5
+}
+.farmers .badCursive{padding-bottom:15px;font-size: 48px}
+
+.pack{text-align: center}
+.grid-4, .grid-5, .grid-6{width: 180px;text-align: center}
+.grid-4{margin-left: 132px}
+.grid-5{margin: 0 76px}
+.grid-6{margin-right: 132px}
+.pack div p.title {
+    font-size: 14px;
+    margin-top: 30px
+}
+.pack > p.title{margin-top:50px;font-size: 16px}
+.kitchen{
+    height: 500px;
+    margin: 40px 0 0;
+    text-align: center;
+    background: url("../img/bg_kitchen.png") 50% 0 no-repeat
+}
+.kitchen .about{
+    top: 50px;
+    right: 80px;
+    width: 315px;
+    padding: 50px 47px;
+    background: #f2f1e5
+}
+
+.advantages{
+    width: 100%;
+    height: 367px;
+    margin: 50px 0;
+    background: url("../img/bg_advantages.png") #f2f1e5 50% 0 no-repeat
+}
+.advantages .grid-7{
+    margin: 0 0 0 145px;
+}
+.advantages .grid-8{
+    margin: 0 145px 0 0;
+}
+
+.wysiwyg .phone{font-size: 24px}
+
+
+
+/** FOOT
+===================================*/
+.news_w{
+    width: 960px;
+    margin: 0 auto;
+    color: #3e314f;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.newsList{
+    width: 513px;
+    margin: 0 74px;
+}
+.news{margin-top: 50px}
+
+.newsList .title, .newsList h1{
+    font-size: 18px;
+    color: #3e314f;
+    padding: 50px 0 0;
+    font-weight: bold;
+    text-decoration: none
+}
+.newsList p{padding:0;margin: 18px 0 0}
+.newsList .more{
+    margin: 0;
+    padding: 0;
+    color: #b9965a;
+    text-decoration: none
+}
+.newsList .share{
+    margin: 40px 0 10px;
+    padding: 0;
+    color: #595959;
+    font-weight: 900
+}
+.newsList .date{
+    padding-top: 20px;
+    color: #b9965a;
+    border-bottom: 1px solid #b9965a
+}
+.nav_w{
+    margin-top: 38px
+}
+.nav{
+    margin: 0;
+    padding:0;
+    list-style: none;
+}
+.nav li{
+    width: 21px;
+    height: 21px;
+    float: left;
+    display: block;
+    color: #3e314f;
+    text-align: center
+}
+.nav li a{
+    color: #3e314f;
+    text-decoration: none
+}
+.circle{
+    background-position: -171px 0;
+}
+.newsList .btn{
+    width: 222px;
+    margin: 50px 0 0
+}
+
+.history_w{
+    width: 294px
+}
+.history_w .social{
+    margin-bottom: 20px;
+    color: #3e314f;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 900;
+}
+.history{
+    margin: 50px 0 0;
+    color: #b9965a;
+    font-style: italic;
+    font-family: 'Open Sans Light'
+}
+.history .month{
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none
+}
+.history .month a{color:#b9965a;text-decoration: none}
+.history .month a:hover{color:#3e314f}
+.grid-9, .grid-10, .grid-11{width: 220px}
+.grid-9 p.title, .grid-10 p.title, .grid-11 p.title{padding:40px 0 15px;font-size: 16px}
+.grid-9{margin: 0 70px}
+.grid-11{margin: 0 70px}
+
+.grid-12{margin-left: 100px;padding: 3px 0 0 40px;font-size: 16px;text-align: left}
+.grid-13{margin:0 50px;padding: 3px 0 5px 40px;font-size: 16px;text-align: left}
+.grid-14{margin-right: 100px;padding: 3px 0 5px 40px;font-size: 16px;text-align: left}
+
+.grid-15{margin: 0 88px 0 140px;font-size:16px;text-align: left}
+.grid-16{margin-top:0;text-align: left;font-size: 16px}
+.grid-17{margin: 0 100px 0 60px;text-align: left;font-size: 16px}
+
+.map_w{
+    width: 760px;
+    height: 368px;
+    margin: 58px auto 0
+}
+
+.shops_w{
+    width: 784px;
+    margin: 0 auto
+}
+.wysiwyg ul.shops{margin: 0;padding: 0;list-style: none}
+.wysiwyg .shops li {
+	width: 172px;
+    height: 99px;
+    float: left;
+    margin: 0 10px 14px;
+    padding: 0
+}
+.wysiwyg .shops li a{
+	width: 168px;
+    height: 95px;
+    display: block;
+    border: 2px solid #f2f1e5
+}
+.shops li.last{margin-right: 0}
+
+.wysiwyg div.line{
+	height: 1px;
+	margin: 40px auto;
+	background:  #b9965a
+}
+
+
+
+
+/** Catalog
+===================================*/
+.catalog{
+    width: 810px;
+    margin: 0 auto;
+    color: #3e314f;
+    font-size: 14px;
+    text-align: center
+}
+.catalog p.imgTitle{
+    width: 563px;
+    margin: 0 auto;
+    padding: 0 0 35px;
+    text-align: center
+}
+.products_w{margin: 50px 0}
+.product{
+    width: 230px;
+    margin: 0 20px 50px
+}
+.product.last{margin-right: 0}
+.product a{
+    display: block;
+    margin-top: 25px;
+    color: #3e314f;
+    font-size: 18px;
+    text-decoration: none
+}
+.product a:hover{color: #b9965a}
+
+
+
+
+/** Product
+===================================*/
+.product_photo{
+    width: 100%;
+    height: 450px;
+    margin: 0 0 80px;
+    overflow: hidden;
+}
+.product_photo img{
+    top: 0;
+    left: 50%;
+    margin-left: -960px
+}
+.product_w{
+    width: 810px;
+    color: #3e314f;
+    margin: 0 auto 30px;
+    padding-bottom: 58px;
+    border-bottom: 1px solid #3e314f
+}
+.product_img{
+    width: 370px;
+    margin-right: 38px;
+    font-size: 24px;
+    text-align: center;
+    font-family: 'Bad Script', cursive
+}
+.product_img img{padding-bottom:30px}
+
+.product_descr{width: 393px;margin-left:416px;font-size: 14px}
+.product_descr .titleImg{margin: 0 0 25px}
+.product_descr p{margin: 0;padding: 0 0 0 34px}
+.product_descr .title{
+    font-size: 16px;
+    font-weight: 900
+}
+.without{
+    margin: 25px 0 0 51px;
+    padding: 0;
+    color: #bc9b66;
+    font-size: 16px;
+    font-weight: bold;
+    list-style-image: url('../img/bg_li.png')
+}
+.without li{
+    padding:  0 0 15px 15px
+}
+.product_descr .line{width: 100%;margin: 0}
+.product_descr table{
+    margin: 0;
+    padding: 0;
+    border-spacing: 0 10px;
+    border-collapse: separate
+}
+.product_descr table td{
+    width: 170px;
+    background: #f2f1e5
+}
+td.left{padding-left:55px}
+td.right{padding-right:55px}
+
+.use{margin-top: 35px}
+.grid-18{width:140px;font-size: 12px}
+.time{
+    width: 80px;
+    height: 51px;
+    margin: 0 38px;
+    background-position: -270px 0
+}
+.power{
+    width: 79px;
+    height: 56px;
+    background-position: -350px 0
+}
+
+.linked_w{
+    width: 780px;
+    margin: 0 auto;
+}
+.linked_w .title{
+    margin: 25px 0;
+    padding: 0;
+    color: #3e314f;
+    font-size: 16px;
+    font-weight: 900;
+    text-align: center
+}
+.linkedProduct{
+    width: 122px;
+    margin: 0 17px;
+    text-align: center
+}
+.linkedProduct.last{margin-right: 0}
+.linkedProduct a{
+    display: block;
+    margin-top: 13px;
+    color: #3e314f;
+    font-size: 16px;
+    text-decoration: none
+}
+.linkedProduct a:hover{color: #b9965a}
+
+
+
+
+/** FORM
+===================================*/
+.form_w{
+    width: 484px;
+    margin: 50px auto 0;
+    padding: 40px 70px;
+    color: #3e314f;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    background: #f2f1e5
+}
+.form_w .title{
+    padding: 0 0 20px;
+    font-size: 28px;
+    color: #3e314f;
+    font-weight: 100;
+    border-bottom: 1px solid #3e314f;
+}
+.form_w .text{
+    padding: 20px 0 30px
+}
+.form_w form, .form_w fieldset{
+    width: 420px;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    text-align: left
+}
+.form_w input, .form_w textarea{
+    width: 407px;
+    height: 38px;
+    display: block;
+    margin: 5px 0 20px;
+    padding: 0 0 0 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 1px solid #b89559
+}
+.form_w textarea{
+    height: 138px;
+    resize: none
+}
+.form_w .notice{margin:0;padding:0;font-size: 10px;text-align: center}
+.form_w .btn{width:172px;margin-top: 30px}
+
+
+
+/** FOOT
+===================================*/
+.cow_w{
+    width: 615px;
+    height: 28px;
+    margin: 70px auto 0;
+    border-bottom: 1px solid #3e314f
+}
+.cow_w span{
+    top: 1px;
+    left: 50%;
+    width: 56px;
+    height: 28px;
+    margin-left: -28px;
+    background: #fff;
+}
+.cow{
+    width: 46px;
+    height: 28px;
+    background: url("../img/bg_icons.png") -92px 0 no-repeat;
+}
+.foot_w{
+    width: 100%;
+    height: 100px;
+    padding-top: 40px;
+    background: #f2f1e5
+}
+.foot{
+    width: 620px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #3e314f
+}
+.addr{
+    padding: 12px 0 0 40px;
+}
+i.target{
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 40px;
+    background-position: -92px -29px;
+}
+
+.contacts{margin: 0 45px}
+.contacts div{
+    padding: 7px 0 5px 40px;
+}
+i.phone{
+    top: 0;
+    left: 0;
+    width: 27px;
+    height: 24px;
+    background-position: -117px -29px;
+}
+i.mail{
+    top: 0;
+    left: 0;
+    width: 27px;
+    height: 24px;
+    background-position: -117px -53px;
+}
+.vk, .fb, .ig{
+    width: 27px;
+    height: 27px;
+    background-position: -144px 0
+}
+.fb{margin:0 15px;background-position: -144px -27px}
+.ig{background-position: -144px -54px}
+
+
+
+/** FOOT
+===================================*/
+.w_popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 888;
+    background: rgba(0,0,0,.5);
+    text-align: center
+}
+.w_popup:after{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    height: 100%;
+    width: 0;
+    vertical-align: middle;
+    content: ''
+}
+/* Added for IE<9 compatibility */
+.w_popup_ie{
+    background: #000;
+    opacity: .5;
+    filter: alpha(opacity=50)
+}
+.popup{
+    *zoom: 1;
+    width: 420px;
+    display: inline-block;
+    position: relative;
+    *display: inline;
+    padding: 50px 0;
+    color: #3e314f;
+    text-align: center;
+    background: #f3f1e5
+}
+.popup p{margin:0;padding:0}
+.popup .title {
+    height: 41px;
+    color: #294052;
+    font-size: 17px;
+    line-height: 41px;
+    padding-bottom: 10px;
+    text-transform: uppercase
+}
+.popup .text{font-size: 16px;font-style:italic}
+.warning{color: #b72113 !important}
+/* Added instead of :after pseudoelement */
+.popup__valignfix
+{	display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 0;
+    height: 100%;
+    vertical-align: middle
+}
