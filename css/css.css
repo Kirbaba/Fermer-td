@@ -138,6 +138,10 @@ ul.headMenu li.logoHead{
     margin-top: 28px;
 }
 .logoHead a{padding: 0; border: none}
+.logoHead img {
+    height: 101px;
+    width: 146px;
+}
 ul.headMenu li.last{
     margin-right: 0
 }
@@ -555,6 +559,8 @@ td.right{padding-right:55px}
 
 /** FORM
 ===================================*/
+
+
 .form_w{
     width: 484px;
     margin: 50px auto 0;
@@ -565,6 +571,11 @@ td.right{padding-right:55px}
     text-align: center;
     background: #f2f1e5
 }
+
+.modal .form_w{
+    margin: 0;
+}
+
 .form_w .title{
     padding: 0 0 20px;
     font-size: 28px;

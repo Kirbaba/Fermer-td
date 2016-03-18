@@ -1,15 +1,8 @@
 <?php get_header(); ?>
-<div class="bxslider_w shop after">
-	<ul class="bxslider">
-		<li>
-			<img src="<?php bloginfo('template_directory'); ?>/slides/43f3f41c.png" alt="текст слайда">
-		</li>
-		<li>
-			<img src="<?php bloginfo('template_directory'); ?>/slides/cf99795f.png" alt="текст слайда">
-		</li>
-	</ul>
-</div>
+	<div class="bxslider_w after">
+	</div>
 <div class="catalog">
+	<h1 class="titleImg p_rel">Каталог продукции<span class="brd db"></span></h1>
 		<?php
 
 		$cat = get_query_var('cat');
@@ -31,6 +24,7 @@
 		$categories = get_categories( $args );
 		if(!empty($categories)){
 		?>
+
 		<div class="products_w after">
 			<?php foreach($categories as $category){ ?>
 				<div class="product fl">
@@ -42,6 +36,13 @@
 		</div>
 		<?php }else{ ?>
 	<div class="products_w after">
+		<?php
+		$args = array(
+			'post_type'=> 'catalogue',
+			'posts_per_page' => -1,
+		);
+		query_posts($args); ?>
+
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 				<div class="product fl">
 					<?php the_post_thumbnail(); ?>

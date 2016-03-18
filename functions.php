@@ -8,12 +8,14 @@ require_once TM_DIR . '/lib/Parser.php';
 function add_style(){
     wp_enqueue_style( 'my-styles', get_template_directory_uri() . '/css/css.css', array(), '1');
     wp_enqueue_style( 'bxslider', get_template_directory_uri() . '/js/bxslider/jquery.bxslider.css', array(), '1');
+    wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '1');
 }
 
 function add_script(){    
     wp_enqueue_script( 'jq-1_8', 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js', array(), '1');
     wp_enqueue_script( 'jq', 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js', array(), '1');    
     wp_enqueue_script( 'bxslider', get_template_directory_uri() . '/js/bxslider/jquery.bxslider.min.js', array(), '1');
+    wp_enqueue_script( 'bootstrapjs', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '1');
     wp_enqueue_script( 'my-script', get_template_directory_uri() . '/js/js.js', array(), '1');
     wp_localize_script( 'my-script', 'myajax',
     array(
@@ -77,7 +79,7 @@ function mainCategoriesShortcode(){
         'order'        => 'ASC',
         'hide_empty'   => 0,
         'hierarchical' => 1,
-        'exclude'      => '1',
+        'exclude'      => '1,3',
         'include'      => '',
         'number'       => 0,
         'taxonomy'     => 'category',
@@ -92,3 +94,132 @@ function mainCategoriesShortcode(){
 }
 
 add_shortcode('categories','mainCategoriesShortcode');
+
+/*products*/
+
+/* Сохраняем данные, при сохранении поста */
+add_action('save_post', 'myExtraFieldsUpdate', 10, 1);
+function myExtraFieldsUpdate($post_id)
+{
+    if (!isset($_POST['extra'])) return false;
+    foreach ($_POST['extra'] as $key => $value) {
+        if (empty($value)) {
+            delete_post_meta($post_id, $key); // удаляем поле если значение пустое
+            continue;
+        }
+
+        update_post_meta($post_id, $key, $value); // add_post_meta() работает автоматически
+    }
+    return $post_id;
+}
+
+function extraFieldsStorePrice($post)
+{
+    ?>
+    <p>
+        <span>Цена (для каталога): </span>
+        <input type="text" name='extra[price]' value="<?php echo get_post_meta($post->ID, "price", 1); ?>">
+    </p>
+    <?php
+}
+/* custom post type*/
+
+add_action('init', 'customInitCatalog');
+
+function customInitCatalog()
+{
+    $labels = array(
+        'name' => 'Каталог', // Основное название типа записи
+        'singular_name' => 'Каталог', // отдельное название записи типа Book
+        'add_new' => 'Добавить товар',
+        'add_new_item' => 'Добавить новый товар',
+        'edit_item' => 'Редактировать товар',
+        'new_item' => 'Новый товар',
+        'view_item' => 'Посмотреть товар',
+        'search_items' => 'Найти товар',
+        'not_found' => 'Товаров не найдено',
+        'not_found_in_trash' => 'В корзине товаров не найдено',
+        'parent_item_colon' => '',
+        'menu_name' => 'Каталог'
+
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'taxonomies' => array('category'),
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => array('title', 'thumbnail','editor')
+    );
+    register_post_type('catalogue', $args);
+}
+
+
+// AJAX ACTION
+add_action('wp_ajax_sendCallback', 'sendCallback');
+add_action('wp_ajax_nopriv_sendCallback', 'sendCallback');
+
+function sendCallback(){
+    //prn($_POST);
+    $adminMail = get_option('admin_email');
+    $phone =  $_POST['phone'];
+    $mail = $_POST['mail'];
+    $message = $_POST['message'];
+    $product = $_POST['product'];
+
+    $tovar = get_post($product);
+    $price = get_post_meta($tovar->ID,'price',1);
+    if(!empty($mail)){
+
+        $str = "С вашего сайта оставили заявку на товар:<br>";
+        $str .= $tovar->post_title.", ".$price." руб.<br>";
+        $str .= 'Почта: '.$mail.' <br>';
+        $str .= 'Телефон: '.$phone.' <br>';
+        $str .= 'Текст сообщения: '.$message.' <br>';
+
+        mail($adminMail, "Письмо с сайта Шторы", $str, "Content-type: text/html; charset=UTF-8\r\n");
+
+        echo 1;
+    }else{
+        echo 0;
+    }
+
+    die();
+}
+
+function extraFieldsStoreComponents($post)
+{
+
+    echo "<p><span>Описание (для каталога): </span>";
+    wp_editor(get_post_meta($post->ID, "components", 1), 'editor_id', array(
+        'wpautop' => 1,
+        'media_buttons' => 1,
+        'textarea_name' => 'extra[components]', //нужно указывать!
+        'textarea_rows' => 20,
+        'tabindex'      => null,
+        'editor_css'    => '',
+        'editor_class'  => '',
+        'teeny'         => 0,
+        'dfw'           => 0,
+        'tinymce'       => 1,
+        'quicktags'     => 1,
+        'drag_drop_upload' => false
+    ) );
+    echo "</p>";
+}
+
+function myExtraFieldsStore()
+{
+    add_meta_box('extra_price', 'Цена', 'extraFieldsStorePrice', 'catalogue', 'normal', 'high');
+    add_meta_box('extra_components', 'Компоненты', 'extraFieldsStoreComponents', 'catalogue', 'normal', 'high');
+}
+
+add_action('add_meta_boxes', 'myExtraFieldsStore', 1);
+/*products*/

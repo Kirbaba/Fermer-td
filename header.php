@@ -25,7 +25,7 @@
 						<a href="/product/">Производство</a>
 					</li>
 					<li class="headMenuLi">
-						<a href="/category/products/">Продукция</a>
+						<a href="/catalog">Продукция</a>
 					</li>
 					<li class="logoHead">
 						<img src="<?php bloginfo('template_directory'); ?>/img/logo.png" alt="Фермер">
