@@ -65,9 +65,30 @@ function excerpt_readmore($more) {
 }
 add_filter('excerpt_more', 'excerpt_readmore');
 
-
 if ( function_exists( 'add_theme_support' ) )
     add_theme_support( 'post-thumbnails' );
 
+function mainCategoriesShortcode(){
+    $args = array(
+        'type'         => 'post',
+        'child_of'     => 0,
+        'parent'       => '0',
+        'orderby'      => 'name',
+        'order'        => 'ASC',
+        'hide_empty'   => 0,
+        'hierarchical' => 1,
+        'exclude'      => '1',
+        'include'      => '',
+        'number'       => 0,
+        'taxonomy'     => 'category',
+        'pad_counts'   => false,
+        // полный список параметров смотрите в описании функции http://wp-kama.ru/function/get_terms
+    );
+    $categories = get_categories( $args );
+  //  prn($categories);
 
+    $parser = new Parser();
+    $parser->render(TM_DIR . '/view/categories.php', ['categories' => $categories]);
+}
 
+add_shortcode('categories','mainCategoriesShortcode');

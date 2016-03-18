@@ -17,13 +17,22 @@ class Parser {
         }
     }
 
-    public static function render($tpl, $data = array()){
+    public static function render($tpl, $data = array(), $view = true){
         if(!empty($data)){
             foreach($data as $k => $v){
                 ${$k} = $v;
             }
         }
-        include_once($tpl);
+        if($view){
+            include($tpl);
+        }
+        else {
+            ob_start();
+            include($tpl);
+            $a = ob_get_contents();
+            ob_end_clean();
+            return $a;
+        }
     }
 
 } 

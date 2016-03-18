@@ -9,7 +9,6 @@
 		<link href="http://fonts.googleapis.com/css?family=Bad+Script&amp;subset=cyrillic,latin" rel="stylesheet" type="text/css">
 		<link rel="icon" href="/wp-content/themes/Fermer-td/img/favicon.png" type="image/x-icon" />
 		<link rel="shortcut icon" href="/wp-content/themes/Fermer-td/img/favicon.png" type="image/x-icon" />
-		</script>
 		<title><?php bloginfo('name'); ?> <?php wp_title(); ?></title>
 		<?php wp_head(); ?>
 	</head>
@@ -23,10 +22,10 @@
 						<a href="/about/">О Нас</a>
 					</li>
 					<li class="headMenuLi">
-						<a href="/production/">Производство</a>
+						<a href="/product/">Производство</a>
 					</li>
 					<li class="headMenuLi">
-						<a href="/products/">Продукция</a>
+						<a href="/category/products/">Продукция</a>
 					</li>
 					<li class="logoHead">
 						<img src="<?php bloginfo('template_directory'); ?>/img/logo.png" alt="Фермер">
