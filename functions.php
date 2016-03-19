@@ -82,7 +82,7 @@ function mainCategoriesShortcode(){
         'exclude'      => '1,3',
         'include'      => '',
         'number'       => 0,
-        'taxonomy'     => 'category',
+        'taxonomy'     => 'catalog',
         'pad_counts'   => false,
         // полный список параметров смотрите в описании функции http://wp-kama.ru/function/get_terms
     );
@@ -95,7 +95,7 @@ function mainCategoriesShortcode(){
 
 add_shortcode('categories','mainCategoriesShortcode');
 
-/*products*/
+/*--------------------------------------------------------CATALOG-----------------------------------------------------*/
 
 /* Сохраняем данные, при сохранении поста */
 add_action('save_post', 'myExtraFieldsUpdate', 10, 1);
@@ -123,8 +123,37 @@ function extraFieldsStorePrice($post)
     <?php
 }
 /* custom post type*/
-
 add_action('init', 'customInitCatalog');
+
+// Custom ingredients taxonomy
+function add_catalog_taxonomies() {
+    register_taxonomy('catalog', 'catalogue', array(
+        // Hierarchical taxonomy (like categories)
+        'hierarchical' => true,
+        // This array of options controls the labels displayed in the WordPress Admin UI
+        'labels' => array(
+            'name' => _x( 'Категории', 'taxonomy general name' ),
+            'singular_name' => _x( 'Категория', 'taxonomy singular name' ),
+            'search_items' =>  __( 'Поиск категорий' ),
+            'all_items' => __( 'Все категории' ),
+            'parent_item' => __( 'Родитель' ),
+            'parent_item_colon' => __( 'Родитель:' ),
+            'edit_item' => __( 'Редактировать категорию' ),
+            'update_item' => __( 'Обновить категорию' ),
+            'add_new_item' => __( 'Добавить новую категорию' ),
+            'new_item_name' => __( 'Новое название категории' ),
+            'menu_name' => __( 'Категории' ),
+        ),
+
+        // Control the slugs used for this taxonomy
+        'rewrite' => array(
+            'slug' => 'catalog', // This controls the base slug that will display before each term
+            'with_front' => false, // Don't display the category base before "/locations/"
+            'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+        ),
+    ));
+}
+add_action( 'init', 'add_catalog_taxonomies', 0 );
 
 function customInitCatalog()
 {
@@ -146,7 +175,6 @@ function customInitCatalog()
     $args = array(
         'labels' => $labels,
         'public' => true,
-        'taxonomies' => array('category'),
         'publicly_queryable' => true,
         'show_ui' => true,
         'show_in_menu' => true,
@@ -160,8 +188,6 @@ function customInitCatalog()
     );
     register_post_type('catalogue', $args);
 }
-
-
 // AJAX ACTION
 add_action('wp_ajax_sendCallback', 'sendCallback');
 add_action('wp_ajax_nopriv_sendCallback', 'sendCallback');
@@ -218,8 +244,106 @@ function extraFieldsStoreComponents($post)
 function myExtraFieldsStore()
 {
     add_meta_box('extra_price', 'Цена', 'extraFieldsStorePrice', 'catalogue', 'normal', 'high');
+    add_meta_box('extra_price', 'Цена', 'extraFieldsStorePrice', 'service', 'normal', 'high');
     add_meta_box('extra_components', 'Компоненты', 'extraFieldsStoreComponents', 'catalogue', 'normal', 'high');
+    add_meta_box('extra_components', 'Компоненты', 'extraFieldsStoreComponents', 'service', 'normal', 'high');
 }
 
 add_action('add_meta_boxes', 'myExtraFieldsStore', 1);
 /*products*/
+
+/*----------------------------------------------------END CATALOG-----------------------------------------------------*/
+/*-------------------------------------------------------SERVICES-----------------------------------------------------*/
+
+/*сервисы*/
+
+function customInitServices()
+{
+    $labels = array(
+        'name' => 'Сервисы', // Основное название типа записи
+        'singular_name' => 'Сервисы', // отдельное название записи типа Book
+        'add_new' => 'Добавить сервис',
+        'add_new_item' => 'Добавить новый сервис',
+        'edit_item' => 'Редактировать сервис',
+        'new_item' => 'Новый сервис',
+        'view_item' => 'Посмотреть сервис',
+        'search_items' => 'Найти сервис',
+        'not_found' => 'Сервисов не найдено',
+        'not_found_in_trash' => 'В корзине сервисов не найдено',
+        'parent_item_colon' => '',
+        'menu_name' => 'Сервисы'
+
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => array('title', 'thumbnail','editor')
+    );
+    register_post_type('service', $args);
+}
+add_action('init', 'customInitServices');
+
+// Custom menu
+function add_services_taxonomies() {
+    register_taxonomy('services', 'service', array(
+        // Hierarchical taxonomy (like categories)
+        'hierarchical' => true,
+        // This array of options controls the labels displayed in the WordPress Admin UI
+        'labels' => array(
+            'name' => _x( 'Категории', 'taxonomy general name' ),
+            'singular_name' => _x( 'Категория', 'taxonomy singular name' ),
+            'search_items' =>  __( 'Поиск категорий' ),
+            'all_items' => __( 'Все категории' ),
+            'parent_item' => __( 'Родитель' ),
+            'parent_item_colon' => __( 'Родитель:' ),
+            'edit_item' => __( 'Редактировать категорию' ),
+            'update_item' => __( 'Обновить категорию' ),
+            'add_new_item' => __( 'Добавить новую категорию' ),
+            'new_item_name' => __( 'Новое название категории' ),
+            'menu_name' => __( 'Категории' ),
+        ),
+        // Control the slugs used for this taxonomy
+        'rewrite' => array(
+            'slug' => 'services', // This controls the base slug that will display before each term
+            'with_front' => false, // Don't display the category base before "/locations/"
+            'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+        ),
+    ));
+}
+add_action( 'init', 'add_services_taxonomies', 0 );
+
+function mainServicesShortcode(){
+    $args = array(
+        'type'         => 'post',
+        'child_of'     => 0,
+        'parent'       => '0',
+        'orderby'      => 'name',
+        'order'        => 'ASC',
+        'hide_empty'   => 0,
+        'hierarchical' => 1,
+        'exclude'      => '1,3',
+        'include'      => '',
+        'number'       => 0,
+        'taxonomy'     => 'services',
+        'pad_counts'   => false,
+        // полный список параметров смотрите в описании функции http://wp-kama.ru/function/get_terms
+    );
+    $categories = get_categories( $args );
+    //  prn($categories);
+
+    $parser = new Parser();
+    $parser->render(TM_DIR . '/view/categories.php', ['categories' => $categories]);
+}
+
+add_shortcode('services','mainServicesShortcode');
+
+/*---------------------------------------------------END SERVICES-----------------------------------------------------*/

@@ -22,10 +22,10 @@
 						<a href="/about/">О Нас</a>
 					</li>
 					<li class="headMenuLi">
-						<a href="/product/">Производство</a>
+						<a href="/catalog/">Каталог</a>
 					</li>
 					<li class="headMenuLi">
-						<a href="/catalog">Продукция</a>
+						<a href="/services/">Сервисы</a>
 					</li>
 					<li class="logoHead">
 						<img src="<?php bloginfo('template_directory'); ?>/img/logo.png" alt="Фермер">
