@@ -25,11 +25,12 @@
 		</div>
 	</div>
 	<div class="newsList">
-		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+		<div class="news">
 			<div class="news">
 				<?php the_post_thumbnail(); ?>
 				<a href="<?php echo get_the_permalink(get_the_ID()); ?>" class="title db"><?php the_title(); ?></a>
-				<?php the_content("Читать далее",1); ?>
+				<?php the_content(); ?>
 				<p class="share">Поделиться новостью</p>
 				<div class="after">
 					<a href="http://vk.com/share.php?url=<?php echo get_the_permalink(get_the_ID()); ?>"><i class="vk icon db fl"></i></a>
@@ -37,8 +38,9 @@
 				</div>
 				<div class="date before"><?php echo get_the_date("n/j/Y"); ?></div>
 			</div>
-		<?php endwhile; ?>
-		<?php  endif;?>
+		</div>
+<?php endwhile; ?>
+<?php  endif;?>
 	</div>
 </div>
 <?php get_footer(); ?>

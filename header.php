@@ -34,7 +34,7 @@
 						<a href="/partners/">Партнерам</a>
 					</li>
 					<li class="headMenuLi">
-						<a href="/news/">Новости</a>
+						<a href="/category/news/">Новости</a>
 					</li>
 					<li class="headMenuLi last">
 						<a href="/contacts/">Контакты</a>
