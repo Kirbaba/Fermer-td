@@ -14,7 +14,9 @@
 		<?php $attachments = new Attachments( 'attachments_img' ); /* pass the instance name */ ?>
 		<?php if( $attachments->exist() ) : ?>
 			<?php while( $attachment = $attachments->get() ) : ?>
-				<img class="product_img_mini" src="<?php echo $attachments->src( 'full' ); ?>" alt="">
+			<a href="<?php echo $attachments->src( 'full' ); ?>"   data-lightbox="roadtrip">
+				<img data-lightbox="roadtrip" class="product_img_mini" src="<?php echo $attachments->src( 'full' ); ?>" alt="">
+			</a>
 			<?php endwhile; ?>
 		<?php endif; ?>
 	</div>

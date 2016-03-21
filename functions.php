@@ -9,6 +9,7 @@ function add_style(){
     wp_enqueue_style( 'my-styles', get_template_directory_uri() . '/css/css.css', array(), '1');
     wp_enqueue_style( 'my-sass', get_template_directory_uri() . '/sass/style.css', array(), '1');
     wp_enqueue_style( 'bxslider', get_template_directory_uri() . '/js/bxslider/jquery.bxslider.css', array(), '1');
+    wp_enqueue_style( 'lightbox', get_template_directory_uri() . '/css/lightbox.css', array(), '1');
     wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '1');
 }
 
@@ -17,6 +18,7 @@ function add_script(){
     wp_enqueue_script( 'jq', 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js', array(), '1');    
     wp_enqueue_script( 'bxslider', get_template_directory_uri() . '/js/bxslider/jquery.bxslider.min.js', array(), '1');
     wp_enqueue_script( 'bootstrapjs', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '1');
+    wp_enqueue_script( 'lightbox', get_template_directory_uri() . '/js/lightbox-plus-jquery.min.js', array(), '1', 1);
     wp_enqueue_script( 'my-script', get_template_directory_uri() . '/js/js.js', array(), '1');
     wp_localize_script( 'my-script', 'myajax',
     array(
