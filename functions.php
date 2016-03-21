@@ -7,6 +7,7 @@ require_once TM_DIR . '/lib/Parser.php';
 
 function add_style(){
     wp_enqueue_style( 'my-styles', get_template_directory_uri() . '/css/css.css', array(), '1');
+    wp_enqueue_style( 'my-sass', get_template_directory_uri() . '/sass/style.css', array(), '1');
     wp_enqueue_style( 'bxslider', get_template_directory_uri() . '/js/bxslider/jquery.bxslider.css', array(), '1');
     wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '1');
 }
@@ -345,5 +346,121 @@ function mainServicesShortcode(){
 }
 
 add_shortcode('services','mainServicesShortcode');
+
+
+function my_attachments( $attachments )
+{
+    $fields         = array(
+        array(
+            'name'      => 'title',                         // unique field name
+            'type'      => 'text',                          // registered field type
+            'label'     => __( 'Title', 'attachments' ),    // label to display
+            'default'   => 'title',                         // default value upon selection
+        )
+    );
+
+    $args = array(
+
+        // title of the meta box (string)
+        'label'         => 'Прикрепленные изображения',
+
+        // all post types to utilize (string|array)
+        'post_type'     => array( 'service','catalogue' ),
+
+        // meta box position (string) (normal, side or advanced)
+        'position'      => 'normal',
+
+        // meta box priority (string) (high, default, low, core)
+        'priority'      => 'high',
+
+        // allowed file type(s) (array) (image|video|text|audio|application)
+        'filetype'      => null,  // no filetype limit
+
+        // include a note within the meta box (string)
+        'note'          => 'прикрепите изображения здесь!',
+
+        // by default new Attachments will be appended to the list
+        // but you can have then prepend if you set this to false
+        'append'        => true,
+
+        // text for 'Attach' button in meta box (string)
+        'button_text'   => __( 'Добавить изображения', 'attachments' ),
+
+        // text for modal 'Attach' button (string)
+        'modal_text'    => __( 'Добавить', 'attachments' ),
+
+        // which tab should be the default in the modal (string) (browse|upload)
+        'router'        => 'browse',
+
+        // whether Attachments should set 'Uploaded to' (if not already set)
+        'post_parent'   => false,
+
+        // fields array
+        'fields'        => $fields,
+
+    );
+
+    $attachments->register( 'attachments_img', $args ); // unique instance name
+}
+
+add_action( 'attachments_register', 'my_attachments' );
+
+
+function attachments_files( $attachments )
+{
+    $fields         = array(
+        array(
+            'name'      => 'title',                         // unique field name
+            'type'      => 'text',                          // registered field type
+            'label'     => __( 'Title', 'attachments' ),    // label to display
+            'default'   => 'title',                         // default value upon selection
+        )
+    );
+
+    $args = array(
+
+        // title of the meta box (string)
+        'label'         => 'Прикрепленные файлы',
+
+        // all post types to utilize (string|array)
+        'post_type'     => array( 'service','catalogue' ),
+
+        // meta box position (string) (normal, side or advanced)
+        'position'      => 'normal',
+
+        // meta box priority (string) (high, default, low, core)
+        'priority'      => 'high',
+
+        // allowed file type(s) (array) (image|video|text|audio|application)
+        'filetype'      => null,  // no filetype limit
+
+        // include a note within the meta box (string)
+        'note'          => 'прикрепите файлы здесь!',
+
+        // by default new Attachments will be appended to the list
+        // but you can have then prepend if you set this to false
+        'append'        => true,
+
+        // text for 'Attach' button in meta box (string)
+        'button_text'   => __( 'Добавить файлы', 'attachments' ),
+
+        // text for modal 'Attach' button (string)
+        'modal_text'    => __( 'Добавить', 'attachments' ),
+
+        // which tab should be the default in the modal (string) (browse|upload)
+        'router'        => 'browse',
+
+        // whether Attachments should set 'Uploaded to' (if not already set)
+        'post_parent'   => false,
+
+        // fields array
+        'fields'        => $fields,
+
+    );
+
+    $attachments->register( 'attachments_files', $args ); // unique instance name
+}
+
+add_action( 'attachments_register', 'attachments_files' );
 
 /*---------------------------------------------------END SERVICES-----------------------------------------------------*/

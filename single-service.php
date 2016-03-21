@@ -10,6 +10,14 @@
 	<div class="product_img fl">
 		<?php the_post_thumbnail(); ?>
 	</div>
+	<div class="product_img_thumbs">
+		<?php $attachments = new Attachments( 'my_attachments' ); /* pass the instance name */ ?>
+		<?php if( $attachments->exist() ) : ?>
+			<?php while( $attachment = $attachments->get() ) : ?>
+				<img class="product_img_mini" src="<?php echo $attachments->src( 'full' ); ?>" alt="">
+			<?php endwhile; ?>
+		<?php endif; ?>
+	</div>
 	<div class="product_descr">
 		<h1 class="titleImg p_rel"><?php the_title(); ?><span class="brd db"></span></h1>
 		<p class="title">Описание и стандартное оборудование:</p>
